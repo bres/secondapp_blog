@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+ {% for post in post %}
+    <!-- component -->
+    <div class="flex mt-32">
+
+        <div class="w-10/12">
+          <p class="font-sans text-xl font-medium text-gray-900 mb-1">{{post.title}}.</p>
+          <p class="font-sans text-red-700 text-sm mb-4">{{post.author}}</p>
+          <p class="text-md mb-6 text-gray-900 leading-loose tracking-wideest font-serif">{{post.content}}</p>
+
+          <div>
+            <a href="#" class="text-black">5 COMMENTS</a>
+         </div>
+        </div>
+
+    <div class="w-2/12">
+    
+        <p class="text-sm font-light float-right">Share</p>
+    </div>
+
+    </div>
+{% endfor %}
+
+
+{% endblock %}
