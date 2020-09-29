@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'members',
+    'crispy_forms',
+    'crispy_tailwind',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +122,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+import os
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+
+]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"

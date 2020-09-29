@@ -1,0 +1,19 @@
+{% extends 'blog/base.html'%}
+
+
+{% block content %}
+<!-- component -->
+ <div class="w-full mt-32">
+         <h1 class="font-sans font-medium text-xl  mb-4">{{post.title}}</h1>
+         <p class="text-gray-600  mb-3">Written by <span class="text-red-600 cursor-pointer text-sm">{{post.author}}</span> on {{post.publish}}</p>
+         <p class="text-gray-900  text-justify tracking-wider mb-6 leading-loose">{{post.content}}</p>
+         <div>
+             <a href="{% url 'blog:postlist'  %}" class="text-red-600 hover:underline">return back</a>
+             <a href="#" class="text-gray-600 hover:underline">5 COMMENTS</a>
+        </div>
+ </div>
+
+<p class="text-xl my-4"><a href="{% url 'blog:update_post' post.slug %}">update</p>
+
+<p class="text-xl my-4"><a href="{% url 'blog:delete_post' post.slug %}">delete</p>
+{% endblock %}

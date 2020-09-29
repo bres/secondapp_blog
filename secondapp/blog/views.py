@@ -1,17 +1,47 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from .models import Post
+from .forms import PostForm
 
 
 # Create your views here
 
 def index(request):
-    return render(request,'index.html')
+    latest_post=Post.newmanager.first()
+    return render(request,'blog/index.html',{'latest_post':latest_post})
+
 
 def postList(request):
     all_posts = Post.newmanager.all()
-    return render(request,'postlist.html',{'post':all_posts})
+    return render(request,'blog/postlist.html',{'post':all_posts})
 
 
 def postSingle(request,slug):
     post=get_object_or_404(Post,slug=slug,status='published')
-    return render(request,'postsingle.html',{'post':post})
+    return render(request,'blog/postsingle.html',{'post':post})
+
+def create_post(request):
+    form=PostForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect('blog:postlist')
+
+    return render(request,'blog/post-form.html',{'form':form})
+
+def update_post(request,slug):
+    post=Post.objects.get(slug=slug)
+    form=PostForm(request.POST or None,instance=post)
+
+    if form.is_valid():
+        form.save()
+        return redirect('blog:postlist')
+    return render(request,'blog/post-form.html',{'form':form,'post':post})
+
+
+def delete_post(request,slug):
+    post=Post.newmanager.get(slug=slug)
+
+    if request.method=='POST':
+        post.delete()
+        return redirect ('blog:postlist')
+    return render(request,'blog/post-delete.html',{'post':post})

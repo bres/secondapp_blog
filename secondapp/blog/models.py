@@ -13,12 +13,14 @@ class Post(models.Model):
             return super().get_queryset().filter(status="published")
 
 
+
+
     options=(
             ('draft','Draft'),
             ('published','Published'),
             )
 
-
+    excerpt=models.TextField(default="put a part of your contente here")
     title=models.CharField(max_length=250)
     slug=models.SlugField(max_length=250,unique_for_date='publish')
     publish=models.DateTimeField(default=timezone.now)
@@ -34,5 +36,8 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+   
+
 
 

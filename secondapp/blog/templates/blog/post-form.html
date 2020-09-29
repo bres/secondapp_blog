@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+Delete
+{% endblock %}
+{% block content %}
+{% load tailwind_filters %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form|crispy  }}
+    <button class=""<!-- component -->
+<button class="bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded">
+    Save
+</button>
+   
+</form>
+
+{% if post %}
+<a href="{% url 'blog:delete_post' post.slug %}">Delete</a>
+{% endif %}
+
+{% endblock %}

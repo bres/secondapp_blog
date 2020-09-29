@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+Register
+{% endblock %}
+{% load tailwind_filters %}
+{% block content %}
+
+
+<div class="flex items-start">
+    <div class="w-1/2 ">
+        <img src="{% static 'images/books.jpg' %}" class="bg-contain pr-10"  alt="books photo">
+    </div>
+    <div class="w-1/2">   
+        <p class="text-2xl text-red-600 pb-6 text-center font-semibold">Sign up</p>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form |crispy }}
+
+<button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold my-4 py-2 px-4 border border-red-600 rounded">
+  Sign up
+</button>
+        </form>
+        <div class="">
+            <p class="text-sm pt-4 text-gray-600">
+            Forgot
+            <span class="text-sm text-red-600 hover:underline"> Password? </span>
+            </p>
+            <p class="text-sm text-gray-600">
+            Already have an account?
+            <span class="text-red-600 text-sm hover:underline"> Login!</span>
+            </p>
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock %}
