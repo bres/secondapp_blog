@@ -1,15 +1,28 @@
 {% extends 'blog/base.html' %}
+
+{% load static %}
 {% block title %}
 Login
 {% endblock %}
 
-<p class="text-xl text-red-600">Login </p>
+{% load tailwind_filters %}
 
 {% block content %}
-<form method="POST" action="{% url 'members:login' %}" >
-    {% csrf_token %}
-    {{ form.as_p  }}
-    <button type="submit">Login</button>
-</form>
+<div class="flex items-start">
+     <div class="w-1/2 ">
+        <img src="{% static 'images/books.jpg' %}" class="bg-cover pr-10"  alt="books photo">
+     </div>
+     <div class="w-1/2">   
+     <p class="text-2xl font-bold text-red-600 pb-6 text-center">Login</p>
+         <form method="POST" action="{% url 'members:login' %}">
+                    {% csrf_token %}
+                    {{ form |crispy }}
+
+        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold my-4 py-2 px-4 border border-red-600 rounded">
+          Login
+        </button> 
+        </form> 
+    </div>
+</div>
 
 {% endblock %}
