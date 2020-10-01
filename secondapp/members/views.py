@@ -9,7 +9,7 @@ def signup_view(request):
         form=RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('blog:home')    
+            return redirect('blog:home')    
     else:
         form=RegisterForm()        
    
