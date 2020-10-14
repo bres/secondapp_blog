@@ -6,9 +6,8 @@
     <title>
     {% block title %}
     {% endblock %}
-    </title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/output.css' %}"/>
-</head>
+    </title><link rel="stylesheet" type="text/css" href="{% static 'css/output.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/public/styles.css' %}"/>
 <body class="bg-white font-sans  mx-auto leading-relaxed tracking-wide antialiased">
 
 
@@ -22,6 +21,12 @@
   <li class="py-1">
 	  <span> <a href="{% url 'members:signup' %}" class="text-xs text-gray-500  hover:text-gray-800">Εγγραφή</a><span>
 	  <span> <a href="{% url 'members:login' %}" class="text-xs  text-gray-500  hover:text-gray-800 ml-4">Είσοδος</a><span>
+	  <span> 
+          <form class="" action="{% url 'members:logout' %}" method="post">
+           {% csrf_token %}
+           <button type="submit">Logout</button>
+          </form>
+      </span> 
   </li>
 
 </ul>

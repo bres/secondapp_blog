@@ -5,6 +5,8 @@ Delete
 {% block content %}
 {% load tailwind_filters %}
 
+
+<div class=" container mx-auto px-32">
 <form method="POST">
     {% csrf_token %}
     {{ form|crispy  }}
@@ -18,5 +20,5 @@ Delete
 {% if post %}
 <a href="{% url 'blog:delete_post' post.slug %}">Delete</a>
 {% endif %}
-
+</div>
 {% endblock %}
