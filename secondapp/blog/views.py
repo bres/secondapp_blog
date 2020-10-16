@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Post
 from .forms import PostForm
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here
@@ -19,6 +20,8 @@ def postSingle(request,slug):
     post=get_object_or_404(Post,slug=slug,status='published')
     return render(request,'blog/postsingle.html',{'post':post})
 
+
+@login_required(login_url="/members/login/")
 def create_post(request):
     form=PostForm(request.POST or None)
 
@@ -28,6 +31,7 @@ def create_post(request):
 
     return render(request,'blog/post-form.html',{'form':form})
 
+@login_required(login_url="/members/login/")
 def update_post(request,slug):
     post=Post.objects.get(slug=slug)
     form=PostForm(request.POST or None,instance=post)
@@ -37,7 +41,7 @@ def update_post(request,slug):
         return redirect('blog:postlist')
     return render(request,'blog/post-form.html',{'form':form,'post':post})
 
-
+@login_required(login_url="/members/login/")
 def delete_post(request,slug):
     post=Post.newmanager.get(slug=slug)
 

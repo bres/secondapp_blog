@@ -14,22 +14,26 @@
 
 <section class="bg-gray-100 border-gray-300 border-b border-t">
 
-<ul class="container mx-auto px-32 flex justify-between items-center">
-  <li class="py-1">
+<div class="container mx-auto px-32 flex justify-between items-center">
+  <p class="py-1">
 	  <span class="text-xs text-gray-500 ml-1">Γίνε μέλος και κέρδισε μια συμμετοχή στην ετήσια έντυπη έκδοση των 12 δημοφιλέστερων πεζογραφημάτων  &rarr;</span>
-  </li>
-  <li class="py-1">
-	  <span> <a href="{% url 'members:signup' %}" class="text-xs text-gray-500  hover:text-gray-800">Εγγραφή</a><span>
-	  <span> <a href="{% url 'members:login' %}" class="text-xs  text-gray-500  hover:text-gray-800 ml-4">Είσοδος</a><span>
-	  <span> 
-          <form class="" action="{% url 'members:logout' %}" method="post">
+  </p>
+  <ul class="flex  justify-between items-center py-1">
+      {% if user.is_authenticated  %}
+      <li class="text-xs text-gray-500 ml-4 hover:text-gray-800"> 
+          <form action="{% url 'members:logout' %}" method="post">
            {% csrf_token %}
            <button type="submit">Logout</button>
           </form>
-      </span> 
-  </li>
+      </li> 
+      {% else %}
 
-</ul>
+	  <li class="text-xs text-gray-500  hover:text-gray-800"> <a href="{% url 'members:signup' %}" >Εγγραφή</a><li>
+      <li class="text-xs text-gray-500 ml-4 hover:text-gray-800"> <a href="{% url 'members:login' %}">Είσοδος</a><li>
+      {% endif%}
+  </ul>
+
+</div>
 
 </section>
 

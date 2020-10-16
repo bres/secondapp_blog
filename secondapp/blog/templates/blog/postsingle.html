@@ -3,6 +3,7 @@
 
 {% block content %}
 <!-- component -->
+
  <div class="container mx-auto mt-32 px-32">
          <h1 class="font-sans font-medium text-xl  mb-4">{{post.title}}</h1>
          <p class="text-gray-600  mb-3">Written by <span class="text-red-600 cursor-pointer text-sm">{{post.author}}</span> on {{post.publish}}</p>
@@ -13,8 +14,13 @@
         </div>
  </div>
  <div class="container mx-auto px-32 ">
-<p class="text-xl my-4"><a href="{% url 'blog:update_post' post.slug %}">update</p>
-
-<p class="text-xl my-4"><a href="{% url 'blog:delete_post' post.slug %}">delete</p>
+     {% if user.is_authenticated  %}
+        {% if user.id == post.author.id  %}
+        <ul class="flex my-4">
+            <li class="text-lg text-red-600"><a href="{% url 'blog:update_post' post.slug %}">update</li>
+            <li class="text-lg text-red-600"><a href="{% url 'blog:delete_post' post.slug %}">delete</li>
+        </ul>        
+        {% endif %}
+     {% endif %}
  </div>
 {% endblock %}
