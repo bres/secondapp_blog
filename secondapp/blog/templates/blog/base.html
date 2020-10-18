@@ -13,28 +13,29 @@
 
 
 <section class="bg-gray-100 border-gray-300 border-b border-t">
+<div class="container mx-auto px-32 ">
+<div class="flex justify-between ">
+  {% if user.is_authenticated  %}
+ 
+ <div class="text-xs text-gray-500 py-2 font-semibold">You are logged in as: <span class="text-red-600 font-mono">{{ user }}</span></div>
 
-<div class="container mx-auto px-32 flex justify-between items-center">
-  <p class="py-1">
-	  <span class="text-xs text-gray-500 ml-1">Γίνε μέλος και κέρδισε μια συμμετοχή στην ετήσια έντυπη έκδοση των 12 δημοφιλέστερων πεζογραφημάτων  &rarr;</span>
-  </p>
-  <ul class="flex  justify-between items-center py-1">
-      {% if user.is_authenticated  %}
-      <li class="text-xs text-gray-500 ml-4 hover:text-gray-800"> 
-          <form action="{% url 'members:logout' %}" method="post">
-           {% csrf_token %}
-           <button type="submit">Logout</button>
+  
+          <form class="leading-4 py-2" action="{% url 'members:logout' %}" method="post"> {% csrf_token %}
+		  <button type="submit" class="text-xs text-gray-500 font-semibold">Logout</button>
           </form>
-      </li> 
-      {% else %}
+ 
+   {% else %}
+  <div class="py-2">
+         <div class="text-xs text-gray-500  ml-1">
+		 <p class="font-semibold"> Γίνε μέλος και κέρδισε μια συμμετοχή στην ετήσια έντυπη έκδοση των 12 δημοφιλέστερων πεζογραφημάτων  &rarr;</p>
+	 </div>
+  </div>
+  <div class="flex py-2">  
+	  <div class="text-xs text-gray-500 hover:text-gray-800 font-semibold"> <a href="{% url 'members:signup' %}">Εγγραφή</a></div>
+	 <div class="text-xs text-gray-500 ml-4  hover:text-gray-800 font-semibold"> <a href="{% url 'members:login' %}">Είσοδος</a></div>
+ </div>
 
-	  <li class="text-xs text-gray-500  hover:text-gray-800"> <a href="{% url 'members:signup' %}" >Εγγραφή</a><li>
-      <li class="text-xs text-gray-500 ml-4 hover:text-gray-800"> <a href="{% url 'members:login' %}">Είσοδος</a><li>
-      {% endif%}
-  </ul>
-
-</div>
-
+    {% endif%}
 </section>
 
 
