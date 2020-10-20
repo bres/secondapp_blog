@@ -1,5 +1,15 @@
+
+
+  {% if user.is_authenticated  %}
+    {% if user.id == post.author.id  %}
 <form method="Post">
     {% csrf_token %}
     <p>are you syre you want to delete {{ post.title  }} ?</p>
     <button type="submit">Confirm</button>
 </form>
+
+    {% else %}
+    <p>you are not authorized to delete this post</p>
+
+    {% endif %}
+   {% endif %}

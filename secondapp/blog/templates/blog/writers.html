@@ -1,0 +1,31 @@
+{% extends 'blog/base.html'%}
+
+
+{% block content %}
+<!-- component -->
+
+ <div class="container mx-auto mt-32 px-32">
+{% if user %}
+     {% if all_writers.count < 2 %}
+  <p> there is one or none  user</p>
+    {% else %}
+<p> the users are :    {{ all_writers.count }}    </p>
+
+
+
+ {% for writer in all_writers %}
+ <ul class="py-4">
+
+     <li>   {{ writer.username }}   </li>
+     <li>   {{ writer.email }}   </li>
+
+ </ul>
+ {% endfor %}
+{% endif%}
+
+     {% endif %}
+
+
+ </div>
+
+{% endblock %}

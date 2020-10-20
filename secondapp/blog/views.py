@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import Post
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
 
 # Create your views here
 
@@ -26,10 +26,12 @@ def create_post(request):
     form=PostForm(request.POST or None)
 
     if form.is_valid():
-        form.save()
+        instance=form.save(commit=False)
+        instance.author=request.user
+        instance.save()
         return redirect('blog:postlist')
 
-    return render(request,'blog/post-form.html',{'form':form})
+    return render(request,'blog/create-form.html',{'form':form})
 
 @login_required(login_url="/members/login/")
 def update_post(request,slug):
@@ -39,7 +41,7 @@ def update_post(request,slug):
     if form.is_valid():
         form.save()
         return redirect('blog:postlist')
-    return render(request,'blog/post-form.html',{'form':form,'post':post})
+    return render(request,'blog/update-form.html',{'form':form,'post':post})
 
 @login_required(login_url="/members/login/")
 def delete_post(request,slug):
@@ -49,3 +51,9 @@ def delete_post(request,slug):
         post.delete()
         return redirect ('blog:postlist')
     return render(request,'blog/post-delete.html',{'post':post})
+
+
+def writersList(request):
+    #all_writers=User.objects.all()
+    all_writers=Post.objects.author.all()
+    return render(request,'blog/writers.html',{'all_writers':all_writers})
