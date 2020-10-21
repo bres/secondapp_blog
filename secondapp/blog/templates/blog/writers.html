@@ -1,31 +1,74 @@
 {% extends 'blog/base.html'%}
+{% load static %}
 
 
 {% block content %}
 <!-- component -->
+<header class="container mx-auto px-32">
+	<div class="bg-cover border-t border-gray-100" style="height:19rem; background-image: url({% static 'images/members.jpg' %});"/>
+		<div class=" h-full flex items-center ">
 
- <div class="container mx-auto mt-32 px-32">
-{% if user %}
-     {% if all_writers.count < 2 %}
-  <p> there is one or none  user</p>
-    {% else %}
-<p> the users are :    {{ all_writers.count }}    </p>
+<div class=" container mx-auto max-w-md bg-white h-40 opacity-90 shadow-lg border-red-100 border" >
+		
+    <p class="text-center text-md pt-3">Αγαπητέ αναγνώστη ,καλώς ήλθες στην <span class="text-red-600 font-semibold ">Prosa</span>.</p>
+
+<p class="text-sm text-gray-800 px-4 pt-1 text-justify tracking-wider mb-4 leading-relaxed">
+Ο σκοπός είναι να αποτελέσει ενα δικτυακό χώρο όπου θα υπάρχει ελεύθερη πρόσβαση σε 
+καθέ μέλος να ανεβάσει το πεζογράφημα του .
+Για να μάθεις περισσότερα ακολούθησε τον παρακάτω σύνδεσμο.
+</p>
+
+ </div>
+</div>
+</div>
+</header>
+
+<div class="container mx-auto mt-32 px-32">
+     <div class="flex mt-20 ">
+	 <div class="w-3/4">
+		  <h1 class="text-lg underline text-red-600 mb-6">Μέλη</h1>
+          {% if user %}
+          {% if all_writers.count < 2 %}
+            <p> there is one or none  user</p>
+          {% else %}
+         <p> the users are :    {{ all_writers.count }}    </p>
+
+         {% for writer in all_writers %}
+         <ul class="py-4">
+
+         <li>   username: {{ writer.username }}   </li>
+         <li>  email::w
+           {{ writer.email }}   </li>
+         </ul>
+         {% endfor %}
+         {% endif%}
+         {% endif %}	
+     </div>
+	<div class="w-1/3 border-gray-300  border-l pl-6 ml-6">
+		<div class="px-2">
+		 <h1 class="text-lg underline text-red-600 mb-6">Θεματολογία του μήνα</h1>
+
+		 <p class="text-sm text-gray-800">Για τον μήνα ------ η θεματολογία είναι Φαντασίας</p>
+		</div>
+
+		<div class="px-2 pt-6">
+
+                 <h1 class="text-lg underline text-red-600 mb-6">Οι δημοφιλέστερες αναρτήσεις</h1>
 
 
+		 <ul class="text-sm text-gray-800">
+			 <li>ΑΥΓΟΥΣΤΟΣ 2020</li>
+			 <li>ΣΕΠΤΕΜΒΡΙΟΣ 2020</li>
+			 <li>ΟΚΤΩΜΒΡΙΟΣ 2020</li>
+		 </ul>
+		</div>
 
- {% for writer in all_writers %}
- <ul class="py-4">
-
-     <li>   {{ writer.username }}   </li>
-     <li>   {{ writer.email }}   </li>
-
- </ul>
- {% endfor %}
-{% endif%}
-
-     {% endif %}
+	</div>
 
 
  </div>
+
+
+ 
 
 {% endblock %}

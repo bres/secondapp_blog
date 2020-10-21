@@ -54,6 +54,6 @@ def delete_post(request,slug):
 
 
 def writersList(request):
-    #all_writers=User.objects.all()
-    all_writers=Post.objects.author.all()
+    all_writers=User.objects.all()
+    #all_writers=Post.objects.author.all()
     return render(request,'blog/writers.html',{'all_writers':all_writers})
