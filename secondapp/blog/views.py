@@ -54,6 +54,8 @@ def delete_post(request,slug):
 
 
 def writersList(request):
-    all_writers=User.objects.all()
+    #all_writers=User.objects.filter(username__iexact='geobres') 
+    #all_writers=User.objects.filter(username='geobres')
+    all_writers=Post.objects.all()   
     all_writer=Post.objects.all()
     return render(request,'blog/writers.html',{'all_writers':all_writers,'all_writer':all_writer})
