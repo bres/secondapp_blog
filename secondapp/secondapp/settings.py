@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'secondapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbprosa',
-        'USER': 'prosa',
+        'NAME': 'prosa',
+        'USER': 'prosauser',
         'PASSWORD': 'blaki1978',
-        'HOST': '',
-        'PORT': '',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
