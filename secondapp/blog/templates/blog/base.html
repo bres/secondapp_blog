@@ -12,20 +12,20 @@
 
 
 
-<section class="bg-gray-100 border-gray-300 border-b border-t">
+<section class="bg-black border-gray-300 border-b border-t">
 <div class="container mx-auto px-32 ">
  {% if user.is_authenticated  %}
     <div class="flex justify-between items-center ">
         <div class="">
-            <span class="text-xs"> You are logged in as: <span class="text-red-600 font-mono">{{ user }}</span></span>
+            <span class="text-xs text-white"> You are logged in as: <span class="text-white font-mono">{{ user }}</span></span>
         </div>
         <div class=" ">
               <ul class="flex">
                   <li class="">
-                      <a class="text-xs text-gray-500 font-semibold" href="{% url 'blog:create_post' %}">Create</a>
+                      <a class="text-xs text-white font-semibold" href="{% url 'blog:create_post' %}">Create</a>
                   </li>
                   <li class="pl-3">
-                      <a class="text-xs text-gray-500 font-semibold" href="" >Profile</a>
+                      <a class="text-xs text-white font-semibold" href="" >Profile</a>
                   </li>
                   <li class="pl-3">
                       <form class="" action="{% url 'members:logout' %}" method="post"> {% csrf_token %}
@@ -40,15 +40,15 @@
    {% else %}
     <div class="flex justify-between items-center ">
         <div class="">
-            <span class="text-xs"> Γίνε μέλος και κέρδισε μια συμμετοχή στην ετήσια έντυπη έκδοση των 12 δημοφιλέστερων πεζογραφημάτων  &rarr; </span>
+            <span class="text-xs text-white"> Γίνε μέλος και κέρδισε μια συμμετοχή στην ετήσια έντυπη έκδοση των 12 δημοφιλέστερων πεζογραφημάτων  &rarr; </span>
         </div>
         <div class=" ">
               <ul class="flex">
                   <li class="">
-                       <a class="text-xs text-gray-500 font-semibold" href="{% url 'members:signup' %}">Εγγραφή</a>
+                       <a class="text-xs text-white font-semibold" href="{% url 'members:signup' %}">Εγγραφή</a>
                   </li>
                   <li class="pl-3">
-                       <a class=" text-xs text-gray-500 font-semibold  "  href="{% url 'members:login' %}">Είσοδος</a>
+                       <a class=" text-xs text-white font-semibold  "  href="{% url 'members:login' %}">Είσοδος</a>
                   </li>
              </ul>
         </div>

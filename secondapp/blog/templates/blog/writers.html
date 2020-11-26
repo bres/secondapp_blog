@@ -28,7 +28,8 @@
  <div class="flex mt-20 ">
 	 <div class="w-2/3">
 		  <h1 class="text-lg underline text-red-600 mb-6">Μέλη</h1>
-                	 
+    
+    {% if test %}            	 
 	  {% for x in test %} 
    
 <!-- component -->
@@ -41,11 +42,11 @@
       <div class="pl-4 w-full">
             <div class="pt-2 flex justify-between w-full">
                    <div class="">
-                           <p class="text-gray-800 text-md mb-1">Geobres </p>
+                           <p class="text-gray-800 text-md mb-1">{{x.username}} </p>
                           
                    </div> 
                    <div class="">  
-                       <small class="text-sm text-gray-600">Last seen:12/03/2020  </small>  
+                       <small class="text-sm text-gray-600">Last seen:{{x.last_login}}  </small>  
                    </div>
 
              </div>
@@ -62,6 +63,10 @@
 
 
  {% endfor %}
+ {% else %}
+ <p> there is not any writer member yet </p>
+
+ {% endif %}
      </div>
  
 

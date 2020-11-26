@@ -59,6 +59,6 @@ def writersList(request):
     # all_writers=Post.objects.order_by('author').distinct('author').exclude(author__is_staff=True)
     #info=Post.objects.filter((user__username.values())
     test=User.objects.annotate(npost=Count('blog_posts')).exclude(is_staff=True)
-    print(test[1].npost)
+    #print(test[1].npost)
     all_writer=Post.objects.all()
     return render(request,'blog/writers.html',{'all_writers':all_writers,'all_writer':all_writer,'test':test})
